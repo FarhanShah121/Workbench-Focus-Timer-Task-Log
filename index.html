@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workbench — Focus Timer &amp; Task Log</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="flash-overlay" id="flashOverlay"></div>
+
+<div class="plate">
+
+  <header class="nameplate">
+    <div class="brand">
+      <svg class="rivet-icon" viewBox="0 0 34 34" fill="none">
+        <circle cx="17" cy="17" r="15.5" stroke="#C89B4A" stroke-width="2"/>
+        <circle cx="17" cy="17" r="3" fill="#C89B4A"/>
+        <line x1="17" y1="4" x2="17" y2="8" stroke="#C89B4A" stroke-width="2"/>
+        <line x1="17" y1="26" x2="17" y2="30" stroke="#C89B4A" stroke-width="2"/>
+        <line x1="4" y1="17" x2="8" y2="17" stroke="#C89B4A" stroke-width="2"/>
+        <line x1="26" y1="17" x2="30" y2="17" stroke="#C89B4A" stroke-width="2"/>
+      </svg>
+      <div>
+        <h1>Workbench</h1>
+        <div class="sub">Focus Timer &amp; Task Log</div>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button id="tabTimerBtn" class="active">Timer</button>
+      <button id="tabInfoBtn">Info / Help</button>
+    </nav>
+  </header>
+
+  <main class="workspace" id="workspaceView">
+    <!-- TIMER PANEL -->
+    <section class="panel timer-panel">
+      <p class="panel-label">Focus Instrument</p>
+
+      <div class="mode-badge" id="modeBadge">Focus session</div>
+
+      <div class="dial-wrap">
+        <svg class="dial" viewBox="0 0 220 220">
+          <g class="dial-ticks" id="dialTicks"></g>
+          <circle class="dial-track" cx="110" cy="110" r="95"></circle>
+          <circle class="dial-progress" id="dialProgress" cx="110" cy="110" r="95"
+                  stroke-dasharray="597" stroke-dashoffset="0"></circle>
+        </svg>
+        <div class="dial-center">
+          <div class="time-readout" id="timeReadout">25:00</div>
+          <div class="time-caption" id="timeCaption">minutes remaining</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn primary" id="startPauseBtn">Start</button>
+        <button class="btn ghost" id="resetBtn">Reset</button>
+      </div>
+
+      <div class="tally-block">
+        <div class="tally-title">Today's completed focus sessions</div>
+        <div class="tally-marks" id="tallyMarks"></div>
+      </div>
+    </section>
+
+    <!-- TASK LEDGER -->
+    <section class="panel ledger-panel">
+      <p class="panel-label">Task Ledger</p>
+
+      <div class="add-row">
+        <input type="text" id="taskInput" placeholder="What are you working on?" maxlength="140">
+        <button class="btn primary" id="addTaskBtn">Add</button>
+      </div>
+
+      <ul class="task-list" id="taskList"></ul>
+      <div class="empty-state" id="emptyState">No tasks logged yet. Add one above to get started.</div>
+
+      <div class="ledger-footer">
+        <span id="taskCountLabel">0 open</span>
+        <span id="taskDoneLabel">0 done</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- INFO / HELP PANEL -->
+  <section class="info-panel" id="infoPanel">
+    <div class="panel">
+      <h2>What is the Pomodoro Technique?</h2>
+      <p>
+        The Pomodoro Technique is a time-management method built around short, focused
+        bursts of work separated by deliberate rest. You work with full attention for
+        25 minutes on a single task, then step away for a 5-minute break. Each 25-minute
+        burst is called a "pomodoro." The rhythm exists to protect your attention: knowing
+        a break is coming makes it easier to resist distraction right now, and the short
+        breaks keep your focus from decaying over a long session.
+      </p>
+
+      <h3>The rhythm this app follows</h3>
+      <ul>
+        <li>Work with focus for <strong>25 minutes</strong>.</li>
+        <li>When the timer ends, the app automatically switches to a <strong>5-minute break</strong>.</li>
+        <li>When the break ends, the app switches back to a fresh 25-minute focus session.</li>
+        <li>Each completed focus session adds one mark to today's tally.</li>
+      </ul>
+
+      <h3>How to use Workbench</h3>
+      <ol class="step-list">
+        <li>Open the <strong>Timer</strong> tab. The dial shows 25:00 and is labeled "Focus session."</li>
+        <li>Press <strong>Start</strong> to begin counting down. The brass ring drains clockwise as time passes.</li>
+        <li>Press <strong>Start</strong> again (it becomes <strong>Pause</strong>) to pause, and press it once more to resume from where you left off.</li>
+        <li><strong>Reset</strong> stops the countdown and returns the current session to its full starting time.</li>
+        <li>When a focus session finishes, the screen flashes, a chime plays, one tally mark is added, and a 5-minute break begins automatically.</li>
+        <li>When the break finishes, the screen flashes and chimes again, and a new 25-minute focus session begins.</li>
+        <li>Use the <strong>Task Ledger</strong> panel any time — type a task and press <strong>Add</strong> or hit Enter. Check the box to mark it done, and use the ✕ button to delete it.</li>
+        <li>Your tasks and today's tally are saved automatically in this browser, so refreshing or closing the page won't lose them.</li>
+      </ol>
+
+      <h3>Notes</h3>
+      <ul>
+        <li>The tally resets each new calendar day, so it always reflects "today."</li>
+        <li>Sound requires one interaction with the page first (a browser rule, not a bug) — pressing Start satisfies this.</li>
+        <li>All data lives only in this browser's local storage. Clearing your browser data will clear it too.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="stampline">Workbench — built for single-task focus</footer>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
